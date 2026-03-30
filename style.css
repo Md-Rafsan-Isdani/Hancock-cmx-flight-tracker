@@ -1,1 +1,49 @@
 
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1e2d;
+    color: white;
+    margin: 0;
+}
+
+header {
+    background: #12344d;
+    padding: 15px;
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 10px;
+}
+
+section {
+    padding: 20px;
+}
+
+.flight-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1c3d5a;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #2e5c7c;
+    text-align: center;
+}
+
+#weatherData {
+    background: #1c3d5a;
+    padding: 15px;
+}
+
+#webcamFeed {
+    width: 100%;
+    max-width: 600px;
+    border: 3px solid white;
+}
