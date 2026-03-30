@@ -2,53 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CMX Flight Dashboard</title>
+    <title>CMX Airport Operations Dashboard</title>
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="header">
-    <div class="header-content">
-        <h1>✈ CMX Live Dashboard</h1>
+<header class="topbar">
+    <div class="logo">
+        <h1>CMX Operations</h1>
+        <span>Houghton County Memorial Airport</span>
+    </div>
+
+    <div class="controls">
+        <label>Select Date</label>
         <input type="date" id="datePicker">
     </div>
 </header>
 
-<main>
+<main class="dashboard">
 
-    <section class="card">
-        <h2>Flight Information</h2>
+    <!-- Flights -->
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Flight Activity</h2>
+            <span class="live-indicator">● LIVE</span>
+        </div>
 
-        <div class="flight-grid">
-            <div class="flight-box">
+        <div class="flight-sections">
+            <div class="flight-panel">
                 <h3>Arrivals</h3>
                 <table id="arrivalsTable"></table>
             </div>
 
-            <div class="flight-box">
+            <div class="flight-panel">
                 <h3>Departures</h3>
                 <table id="departuresTable"></table>
             </div>
         </div>
     </section>
 
-    <section class="card weather-card">
-        <h2>Weather in Houghton</h2>
-        <div id="weatherData" class="weather-grid"></div>
+    <!-- Weather -->
+    <section class="panel weather">
+        <div class="panel-header">
+            <h2>Weather</h2>
+        </div>
+        <div id="weatherData" class="weather-content"></div>
     </section>
 
-    <section class="card webcam-card">
-        <h2>Live Airport Webcam</h2>
-        <div class="webcam-wrapper">
-            <img id="webcamFeed" src="" alt="Airport Webcam">
+    <!-- Webcam -->
+    <section class="panel webcam">
+        <div class="panel-header">
+            <h2>Runway Camera</h2>
         </div>
+        <img id="webcamFeed" alt="Airport Webcam">
     </section>
 
 </main>
 
-<footer>
-    <p>Live Data • Auto-updating every 60 seconds</p>
+<footer class="footer">
+    <p>Data updates every 60 seconds • CMX Airport Monitoring System</p>
 </footer>
 
 <script src="script.js"></script>
