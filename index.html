@@ -1,1 +1,44 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CMX Flight Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>CMX Airport Live Dashboard</h1>
+    <input type="date" id="datePicker">
+</header>
+
+<section id="flights">
+    <h2>Flight Information</h2>
+
+    <div class="flight-container">
+        <div>
+            <h3>Arrivals</h3>
+            <table id="arrivalsTable"></table>
+        </div>
+
+        <div>
+            <h3>Departures</h3>
+            <table id="departuresTable"></table>
+        </div>
+    </div>
+</section>
+
+<section id="weather">
+    <h2>Weather (Houghton, MI)</h2>
+    <div id="weatherData"></div>
+</section>
+
+<section id="webcam">
+    <h2>Airport Webcam</h2>
+    <img id="webcamFeed" src="" alt="Airport Webcam">
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
