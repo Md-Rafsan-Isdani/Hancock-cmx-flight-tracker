@@ -1,49 +1,133 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    background: #0b1e2d;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
-    margin: 0;
 }
 
-header {
-    background: #12344d;
-    padding: 15px;
-    text-align: center;
-}
-
-h1, h2 {
-    margin: 10px;
-}
-
-section {
+/* HEADER */
+.header {
     padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.flight-container {
+.header-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.header h1 {
+    font-weight: 600;
+}
+
+#datePicker {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* MAIN LAYOUT */
+main {
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+/* CARD STYLE */
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+/* FLIGHTS */
+.flight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.flight-box {
+    background: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.flight-box h3 {
+    margin-bottom: 10px;
+}
+
+/* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #1c3d5a;
+}
+
+th {
+    background: rgba(255,255,255,0.1);
 }
 
 th, td {
     padding: 10px;
-    border: 1px solid #2e5c7c;
     text-align: center;
 }
 
-#weatherData {
-    background: #1c3d5a;
+tr:nth-child(even) {
+    background: rgba(255,255,255,0.05);
+}
+
+tr:hover {
+    background: rgba(0, 200, 255, 0.2);
+    transition: 0.2s;
+}
+
+/* WEATHER */
+.weather-grid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.weather-grid div {
+    background: rgba(0,0,0,0.2);
     padding: 15px;
+    border-radius: 10px;
+    min-width: 120px;
+}
+
+/* WEBCAM */
+.webcam-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 #webcamFeed {
     width: 100%;
-    max-width: 600px;
-    border: 3px solid white;
+    max-width: 700px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 20px rgba(0,200,255,0.3);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+    opacity: 0.7;
 }
