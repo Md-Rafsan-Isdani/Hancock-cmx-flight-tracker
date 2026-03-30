@@ -1,4 +1,4 @@
-/* RESET */
+/* ---------- GLOBAL ---------- */
 * {
     margin: 0;
     padding: 0;
@@ -6,128 +6,148 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
+    font-family: "Inter", sans-serif;
+    background: #0b0f14;
+    color: #e6edf3;
 }
 
-/* HEADER */
-.header {
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.header-content {
+/* ---------- TOP BAR ---------- */
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 18px 28px;
+    background: #11161c;
+    border-bottom: 1px solid #1f2933;
 }
 
-.header h1 {
+.logo h1 {
+    font-size: 20px;
     font-weight: 600;
 }
 
-#datePicker {
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
+.logo span {
+    font-size: 12px;
+    color: #8b949e;
 }
 
-/* MAIN LAYOUT */
-main {
-    padding: 20px;
+.controls {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.controls input {
+    margin-top: 4px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #2d3742;
+    background: #0b0f14;
+    color: white;
+}
+
+/* ---------- DASHBOARD ---------- */
+.dashboard {
     display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "flights weather"
+        "flights webcam";
     gap: 20px;
-}
-
-/* CARD STYLE */
-.card {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
     padding: 20px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
-.card h2 {
+/* ---------- PANELS ---------- */
+.panel {
+    background: #11161c;
+    border: 1px solid #1f2933;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
 }
 
-/* FLIGHTS */
-.flight-grid {
+.panel h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* ---------- LIVE DOT ---------- */
+.live-indicator {
+    font-size: 12px;
+    color: #00ff9c;
+}
+
+/* ---------- FLIGHTS ---------- */
+.flight-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.flight-box {
-    background: rgba(0,0,0,0.2);
-    padding: 15px;
-    border-radius: 12px;
-}
-
-.flight-box h3 {
+.flight-panel h3 {
     margin-bottom: 10px;
+    font-size: 14px;
+    color: #9aa4af;
 }
 
 /* TABLE */
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 13px;
 }
 
 th {
-    background: rgba(255,255,255,0.1);
+    text-align: left;
+    color: #8b949e;
+    font-weight: 500;
+    padding-bottom: 8px;
 }
 
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-tr:nth-child(even) {
-    background: rgba(255,255,255,0.05);
+td {
+    padding: 8px 0;
+    border-top: 1px solid #1f2933;
 }
 
 tr:hover {
-    background: rgba(0, 200, 255, 0.2);
-    transition: 0.2s;
+    background: rgba(255,255,255,0.03);
 }
 
-/* WEATHER */
-.weather-grid {
+/* STATUS COLORS */
+.status-on-time {
+    color: #00d68f;
+}
+
+.status-delayed {
+    color: #ff5c5c;
+}
+
+/* ---------- WEATHER ---------- */
+.weather-content {
     display: flex;
-    justify-content: space-around;
-    text-align: center;
-    font-size: 1.2em;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
 }
 
-.weather-grid div {
-    background: rgba(0,0,0,0.2);
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 120px;
-}
-
-/* WEBCAM */
-.webcam-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-#webcamFeed {
+/* ---------- WEBCAM ---------- */
+.webcam img {
     width: 100%;
-    max-width: 700px;
-    border-radius: 12px;
-    border: 2px solid rgba(255,255,255,0.2);
-    box-shadow: 0 0 20px rgba(0,200,255,0.3);
+    border-radius: 8px;
+    border: 1px solid #1f2933;
 }
 
-/* FOOTER */
-footer {
+/* ---------- FOOTER ---------- */
+.footer {
     text-align: center;
-    padding: 15px;
-    opacity: 0.7;
+    font-size: 12px;
+    color: #6e7681;
+    padding: 12px;
+    border-top: 1px solid #1f2933;
 }
