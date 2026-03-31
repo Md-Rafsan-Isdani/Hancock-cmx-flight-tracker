@@ -1,72 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CMX Airport Operations Dashboard</title>
-
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMX Flight Tracker — Houghton County Memorial Airport</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="topbar">
-    <div class="logo">
-        <h1>CMX Operations</h1>
-        <span>Houghton County Memorial Airport</span>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="airport-code">CMX</div>
+        <div class="header-titles">
+          <h1>Houghton County Memorial Airport</h1>
+          <span class="header-sub">Hancock, Michigan · Real-Time Flight Tracker</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-badge"><span class="pulse-dot"></span>LIVE</div>
+        <div class="clock-wrap">
+          <div id="clock">--:--:--</div>
+          <div id="clock-date">---</div>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <div class="controls">
-        <label>Select Date</label>
-        <input type="date" id="datePicker">
+  <!-- WEATHER STRIP -->
+  <section class="weather-strip">
+    <div class="weather-inner">
+      <div class="weather-current">
+        <div class="weather-icon-wrap">
+          <span id="weather-icon">☁</span>
+        </div>
+        <div class="weather-main">
+          <span id="weather-temp" class="temp-big">--°F</span>
+          <span id="weather-desc" class="weather-desc">Loading weather...</span>
+        </div>
+        <div class="weather-details">
+          <div class="weather-detail-item">
+            <span class="detail-label">WIND</span>
+            <span id="weather-wind" class="detail-val">-- mph</span>
+          </div>
+          <div class="weather-detail-item">
+            <span class="detail-label">HUMIDITY</span>
+            <span id="weather-humidity" class="detail-val">--%</span>
+          </div>
+          <div class="weather-detail-item">
+            <span class="detail-label">VISIBILITY</span>
+            <span id="weather-vis" class="detail-val">-- mi</span>
+          </div>
+          <div class="weather-detail-item">
+            <span class="detail-label">PRESSURE</span>
+            <span id="weather-pressure" class="detail-val">-- hPa</span>
+          </div>
+        </div>
+      </div>
+      <div class="weather-forecast" id="weather-forecast">
+        <!-- Forecast cards injected here -->
+      </div>
+      <div class="weather-updated">Updated <span id="weather-time">--:--</span></div>
     </div>
-</header>
+  </section>
 
-<main class="dashboard">
+  <!-- MAIN CONTENT GRID -->
+  <main class="main-grid">
 
-    <!-- Flights -->
-    <section class="panel">
-        <div class="panel-header">
-            <h2>Flight Activity</h2>
-            <span class="live-indicator">● LIVE</span>
+    <!-- LEFT: FLIGHTS -->
+    <section class="flights-section">
+
+      <!-- Date Navigation -->
+      <div class="date-nav">
+        <div class="date-tabs">
+          <button class="date-btn" data-offset="-2">
+            <span class="btn-label">2 Days Ago</span>
+            <span class="btn-date" id="date-label-2"></span>
+          </button>
+          <button class="date-btn" data-offset="-1">
+            <span class="btn-label">Yesterday</span>
+            <span class="btn-date" id="date-label-1"></span>
+          </button>
+          <button class="date-btn active" data-offset="0" id="today-btn">
+            <span class="btn-label">Today</span>
+            <span class="btn-date" id="date-label-0"></span>
+          </button>
+          <button class="date-btn" data-offset="1">
+            <span class="btn-label">Tomorrow</span>
+            <span class="btn-date" id="date-label-3"></span>
+          </button>
         </div>
+        <div class="date-search">
+          <input type="date" id="search-date" aria-label="Search by date">
+          <button id="search-btn">Search</button>
+        </div>
+      </div>
 
-        <div class="flight-sections">
-            <div class="flight-panel">
-                <h3>Arrivals</h3>
-                <table id="arrivalsTable"></table>
+      <!-- Flight Boards -->
+      <div class="boards-grid">
+        <!-- Arrivals -->
+        <div class="flight-board" id="arrivals-board">
+          <div class="board-header arrivals-header">
+            <div class="board-title-row">
+              <span class="board-icon">↙</span>
+              <h2>Arrivals</h2>
             </div>
-
-            <div class="flight-panel">
-                <h3>Departures</h3>
-                <table id="departuresTable"></table>
+            <span class="board-iata">→ CMX</span>
+          </div>
+          <div class="board-body" id="arrivals-list">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <span>Loading flights...</span>
             </div>
+          </div>
         </div>
+
+        <!-- Departures -->
+        <div class="flight-board" id="departures-board">
+          <div class="board-header departures-header">
+            <div class="board-title-row">
+              <span class="board-icon">↗</span>
+              <h2>Departures</h2>
+            </div>
+            <span class="board-iata">CMX →</span>
+          </div>
+          <div class="board-body" id="departures-list">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <span>Loading flights...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flights-footer">
+        Last updated: <span id="flights-updated">--:--</span>
+        <span class="auto-refresh-note">· Auto-refreshes every 2 min</span>
+      </div>
     </section>
 
-    <!-- Weather -->
-    <section class="panel weather">
-        <div class="panel-header">
-            <h2>Weather</h2>
+    <!-- RIGHT: WEBCAM -->
+    <aside class="webcam-section">
+      <div class="webcam-card">
+        <div class="webcam-header">
+          <h2>Airport Webcam</h2>
+          <div class="webcam-live"><span class="pulse-dot red"></span>LIVE</div>
         </div>
-        <div id="weatherData" class="weather-content"></div>
-    </section>
-
-    <!-- Webcam -->
-    <section class="panel webcam">
-        <div class="panel-header">
-            <h2>Runway Camera</h2>
+        <div class="webcam-frame">
+          <!-- 
+            NOTE: CMX does not publish a public webcam stream.
+            Replace the src below with a real webcam URL if you have one.
+            The image refreshes automatically every 30 seconds via JS.
+          -->
+          <img 
+            id="webcam-img" 
+            src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=640&q=80" 
+            alt="CMX Airport Webcam Feed"
+            onerror="this.src='https://placehold.co/640x480/1a1a2e/e0e0e0?text=Webcam+Unavailable'"
+          >
+          <div class="webcam-overlay">
+            <span class="webcam-label">CMX · Houghton County</span>
+            <span class="webcam-ts" id="webcam-ts">--:--</span>
+          </div>
         </div>
-        <img id="webcamFeed" alt="Airport Webcam">
-    </section>
+        <div class="webcam-footer">
+          Refreshes every 30 seconds · <span id="webcam-next">--</span>s until next refresh
+        </div>
+      </div>
 
-</main>
+      <!-- Airport Info Card -->
+      <div class="info-card">
+        <h3>Airport Info</h3>
+        <table class="info-table">
+          <tr><td>IATA</td><td><strong>CMX</strong></td></tr>
+          <tr><td>ICAO</td><td><strong>KCMX</strong></td></tr>
+          <tr><td>Location</td><td>Hancock, MI</td></tr>
+          <tr><td>Elevation</td><td>1,095 ft MSL</td></tr>
+          <tr><td>Runway</td><td>13/31 · 6,501 ft</td></tr>
+          <tr><td>Operator</td><td>Houghton County</td></tr>
+        </table>
+      </div>
+    </aside>
 
-<footer class="footer">
-    <p>Data updates every 60 seconds • CMX Airport Monitoring System</p>
-</footer>
+  </main>
 
-<script src="script.js"></script>
+  <footer class="site-footer">
+    <p>CMX Flight Tracker · Data via AviationStack & OpenWeatherMap · Not for navigation use</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
